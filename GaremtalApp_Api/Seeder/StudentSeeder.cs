@@ -7,7 +7,7 @@ namespace GaremtalApp_Api.Seeder
 	{
 		public static void Seed(SchoolDBcontext context)
 		{
-			// Veritabanında veri olup olmadığını kontrol et
+			// Veritabanında veri olup olmadığını kontrol eder
 			if (context.Ogrenciler.Any())
 			{
 				return; // Veriler zaten mevcut

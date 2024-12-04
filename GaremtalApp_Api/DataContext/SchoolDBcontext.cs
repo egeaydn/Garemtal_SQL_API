@@ -7,7 +7,7 @@ namespace GaremtalApp_Api.DataContext
 	{
 		public SchoolDBcontext(DbContextOptions<SchoolDBcontext> options) : base(options)
 		{
-
+			
 		}
 		public DbSet<Classes> Sınıflar { get; set; }
 		public DbSet<Students> Ogrenciler { get; set; }
