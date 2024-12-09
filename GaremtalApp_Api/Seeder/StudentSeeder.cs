@@ -36,6 +36,8 @@ namespace GaremtalApp_Api.Seeder
 			context.SaveChanges();
 
 
+
+
 		}
 	}
 }

@@ -31,14 +31,14 @@ namespace GaremtalApp_Api.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<Students>> GetProduct(int id)
 		{
-			var product = await _context.Ogrenciler.FindAsync(id);
+			var students = await _context.Ogrenciler.FindAsync(id);
 
-			if (product == null)
+			if (students == null)
 			{
 				return NotFound();
 			}
 
-			return product;
+			return students;
 
 		}
 
@@ -50,6 +50,61 @@ namespace GaremtalApp_Api.Controllers
 			await _context.SaveChangesAsync();
 
 			return CreatedAtAction(nameof(GetProduct), new { id = students.Id }, students);
+		}
+
+		[HttpPut("{id}")]
+		public async Task<IActionResult> PutProduct(int id, Students students)
+		{
+			if (id != students.Id)
+			{
+				return NoContent();
+			}
+
+			_context.Entry(students).State = EntityState.Modified;
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				if (!ProductExists(id))
+				{
+					return NotFound();
+				}
+				else
+				{
+					throw;
+
+				}
+
+			}
+
+			return Ok();
+
+		}
+
+
+		// Delete : api/Products/DeleteProduct/id
+
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteProduct(int id)
+		{
+			var students = await _context.Ogrenciler.FindAsync(id);
+			if (students == null)
+			{
+				return NotFound();
+			}
+
+			_context.Ogrenciler.Remove(students);
+			await _context.SaveChangesAsync();
+
+			return Ok();
+		}
+
+		private bool ProductExists(int id)
+		{
+			return _context.Ogrenciler.Any(p => p.Id == id);
 		}
 	}
 }
