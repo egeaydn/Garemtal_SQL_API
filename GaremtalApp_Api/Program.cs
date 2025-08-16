@@ -34,14 +34,29 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Seeder�� burada �a��r
-using (var scope = app.Services.CreateScope())
+// Seeder'ı burada çağır
+try
 {
-	var context = scope.ServiceProvider.GetRequiredService<SchoolDBcontext>();
-	context.Database.EnsureCreated();
+	using (var scope = app.Services.CreateScope())
+	{
+		var context = scope.ServiceProvider.GetRequiredService<SchoolDBcontext>();
+		Console.WriteLine("Veritabanı bağlantısı kuruluyor...");
+		context.Database.EnsureCreated();
+		Console.WriteLine("Veritabanı oluşturuldu/bağlandı.");
 
-	StudentSeeder.Seed(context);
-	TeacherSeeder.Seed(context);
+		Console.WriteLine("Öğrenci verileri ekleniyor...");
+		StudentSeeder.Seed(context);
+		Console.WriteLine("Öğrenci verileri eklendi.");
+
+		Console.WriteLine("Öğretmen verileri ekleniyor...");
+		TeacherSeeder.Seed(context);
+		Console.WriteLine("Öğretmen verileri eklendi.");
+	}
+}
+catch (Exception ex)
+{
+	Console.WriteLine($"Hata oluştu: {ex.Message}");
+	Console.WriteLine($"Stack Trace: {ex.StackTrace}");
 }
 
 // Configure the HTTP request pipeline
@@ -54,6 +69,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
 
-Console.WriteLine("Uygulama ba�lat�ld�. Swagger i�in /swagger adresini ziyaret edin.");
+Console.WriteLine("Uygulama başlatıldı. Swagger için /swagger adresini ziyaret edin.");
+Console.WriteLine("HTTP: http://localhost:5236");
+Console.WriteLine("HTTPS: https://localhost:7167");
+
+app.Run();
