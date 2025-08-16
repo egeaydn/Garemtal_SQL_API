@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GaremtalApp_Api.Migrations
 {
     [DbContext(typeof(SchoolDBcontext))]
-    [Migration("20241202203033_a")]
-    partial class a
+    [Migration("20241211131452_School")]
+    partial class School
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,43 @@ namespace GaremtalApp_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Adı")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AkıllıTahtaVarMı")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Bölüm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("DersProgramı")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Durum")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kapasite")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Kat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MevcutOgrenciSayisi")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OgretmenID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ProjeörVarMı")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SınıfSeviyesi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

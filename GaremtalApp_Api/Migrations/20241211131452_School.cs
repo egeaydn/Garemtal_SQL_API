@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GaremtalApp_Api.Migrations
 {
     /// <inheritdoc />
-    public partial class a : Migration
+    public partial class School : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,6 +65,16 @@ namespace GaremtalApp_Api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Adı = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Bölüm = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kapasite = table.Column<int>(type: "int", nullable: false),
+                    MevcutOgrenciSayisi = table.Column<int>(type: "int", nullable: false),
+                    SınıfSeviyesi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OgretmenID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DersProgramı = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AkıllıTahtaVarMı = table.Column<bool>(type: "bit", nullable: false),
+                    ProjeörVarMı = table.Column<bool>(type: "bit", nullable: false),
                     Durum = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

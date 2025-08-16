@@ -9,7 +9,7 @@ namespace GaremtalApp_Api.Seeder
 		{
 			if (context.Ogretmenler.Any())
 			{
-				return ;
+				return; // veriler zaten varsa ekleme
 			}
 
 			var teachers = new List<Teachers>
@@ -30,6 +30,7 @@ namespace GaremtalApp_Api.Seeder
 					Durum ="Aktif"
 				}
 			};
+
 			context.Ogretmenler.AddRange(teachers);
 			context.SaveChanges();
 		}

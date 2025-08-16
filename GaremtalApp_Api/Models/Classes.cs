@@ -2,8 +2,7 @@
 {
 	public class Classes : BaseEntity
 	{
-		public class Classroom
-		{
+		
 			//public string SınıfAdı { get; set; }
 			//public int Mevcut { get; set; }
 			//public int OgretmenID { get; set; }
@@ -18,7 +17,7 @@
 			public List<string> DersProgramı { get; set; } // Örnek: ["Matematik", "Fizik"]
 			public bool AkıllıTahtaVarMı { get; set; } // Örnek: true
 			public bool ProjeörVarMı { get; set; }    // Örnek: false
-		}
+		
 
 	}
 }
